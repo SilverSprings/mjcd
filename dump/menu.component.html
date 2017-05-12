@@ -1,0 +1,41 @@
+<div id="topMenu">
+	<div *ngIf="noNameProvided">
+		Choose your name : <input #nameChosen>
+		<button [disabled]="nameChosen.value == ''" (click)="startGameCPU(nameChosen.value)"> Start Game against CPU </button>
+		<select [(ngModel)]="roomSelected">
+			<option *ngFor="let r of rooms" [ngValue]="r"> {{r.name}} - {{r.seats}}/4 </option>
+			<option *ngIf="rooms.length == 0"> no room available </option>
+		</select>
+			<button [disabled]="name.value == '' || !roomSelected?.seats" (click)="startGame(name.value)"> Start Game in </button>
+	</div>
+	<div *ngIf="!noNameProvided">
+		<p> You're playing as {{playerNames.humanPlayer}} </p>
+		<button (click)="endGame()"> End Game </button>
+	</div>
+	<div *ngIf="rulesHidden">
+		<button (click)="showRules()"> Rules </button>
+	</div>
+	<div *ngIf="!rulesHidden">	
+		<button (click)="hideRules()"> Hide rules </button>
+	</div>
+</div>
+<div id="main">
+	<div id="gameIsHere"> </div>
+	<div *ngIf="gameCPUInProgress">
+		<app-gameroom 
+		[playerNames]="playerNamesCPU"
+		[gameLoad]="gameCPUInProgress"
+		></app-gameroom>
+	</div>
+	<div *ngIf="gameInProgress">
+		<app-cityroom
+		[playerName]="playerName"
+		[gameLoad]="gameInProgress"
+		[room]="roomSelected"
+		></app-cityroom>
+	</div>	
+	<div id="rulesAreHere">
+		<app-rules [hidden]="rulesHidden"></app-rules>
+		<a href="#gameIsHere"> Go back to the game </a>
+	</div>
+</div>

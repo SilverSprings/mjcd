@@ -1,0 +1,30 @@
+<div>
+	<button (click)="playerReady()"> Ready </button>
+	<div class="leftPlayer">
+		<p *ngIf="!playersReady[0]"> Waiting for a player ... <p>
+		<p *ngIf="playersReady[0]"> {{ }} is ready <p>
+	</div>
+	<div class="middlePlayer">
+		<p *ngIf="!playersReady[1]"> Waiting for a player ... <p>
+		<p *ngIf="playersReady[1]"> {{}} is ready <p>
+	</div>
+	<div class="rightPlayer">
+		<p *ngIf="!playersReady[2]"> Waiting for a player ... <p>	
+		<p *ngIf="playersReady[2]"> {{}} is ready <p>
+	</div>
+
+	<app-cityboard 
+		*ngIf="gameLoad"
+		(showResults)="showResults($event)"
+		[room]="room"
+	></app-cityboard>
+	<app-results
+		*ngIf="allHands" 
+		[allHands]="allHands"	
+		(playAgain)="playAgain($event)"
+	></app-results>
+	<app-scores 
+		[playerNames]="playerNames"
+		[pointsByPlayer]="pointsByPlayer"
+	></app-scores>
+</div>
