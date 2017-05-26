@@ -1,0 +1,54 @@
+<div class="player">
+	<p class="namePlayer">Player  {{pInR.pName}}</p>
+	<div *ngIf="!playerSD" class="handDealt" dnd-sortable-container [dropZones]="['cards-zone']" [sortableData]="handDealt.cards" class="container13cards">
+		<div *ngFor="let card of hand.cards;let i = index" dnd-sortable [sortableIndex]="i">
+			<img [src]="card.image" class="cardPlayer">
+		</div>
+	</div>
+	<div class="handPlayed">
+		<div id="firstHand">
+			<p class="titleHand">First</p>
+					<div *ngIf="!playerSD" dnd-sortable-container [dropZones]="['cards-zone']" [sortableData]="firstHandPlayed.cards" class="container3cards">
+						<div *ngFor="let card of firstHandPlayed.cards | slice:0:3;let i = index" dnd-sortable [sortableIndex]="i" class="cardPlayer" 
+						(onDropSuccess)="checkHandFirst()">
+							<img [src]="card.image" class="cardPlayer">
+						</div>
+					</div>
+					<div *ngIf="playerSD" class="container3cards">
+						<div *ngFor="let card of firstHandPlayed.cards | slice:0:3;let i = index" class="cardPlayer">
+							<img [src]="card.image" class="cardPlayer">
+						</div>
+					</div>
+		</div>
+		<div id="middleHand">
+			<p class="titleHand">Middle</p>
+					<div *ngIf="!playerSD" dnd-sortable-container [dropZones]="['cards-zone']" [sortableData]="middleHandPlayed.cards" class="container5cards">
+						<div *ngFor="let card of middleHandPlayed.cards | slice:0:5;let i = index" dnd-sortable [sortableIndex]="i" class="cardPlayer"
+						(onDropSuccess)="checkHandMiddle()">
+							<img [src]="card.image" class="cardPlayer">
+						</div>
+					</div>
+					<div *ngIf="playerSD" class="container5cards">
+						<div *ngFor="let card of middleHandPlayed.cards | slice:0:5;let i = index" class="cardPlayer">
+							<img [src]="card.image" class="cardPlayer">
+						</div>
+					</div>					
+		</div>
+		<div id="lastHand">
+			<p class="titleHand">Last</p>
+					<div *ngIf="!playerSD" dnd-sortable-container [dropZones]="['cards-zone']" [sortableData]="lastHandPlayed.cards" class="container5cards">
+						<div *ngFor="let card of lastHandPlayed.cards | slice:0:5;let i = index" dnd-sortable [sortableIndex]="i" class="cardPlayer"
+						(onDropSuccess)="checkHandLast()">
+							<img [src]="card.image" class="cardPlayer">
+						</div>
+					</div>
+					<div *ngIf="playerSD" class="container5cards">
+						<div *ngFor="let card of lastHandPlayed.cards | slice:0:5;let i = index" class="cardPlayer">
+							<img [src]="card.image" class="cardPlayer">
+						</div>
+					</div>						
+		</div>
+	</div>
+	<button *ngIf="!playerSD" [disabled]="disableButton" class="buttonEvaluate" (click)="evaluate()"> Showdown </button>
+	<p *ngIf="playerSD"> Let see what the other have ... </p>
+</div>

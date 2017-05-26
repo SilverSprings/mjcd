@@ -1,0 +1,38 @@
+//the name of the database will be game
+use game
+
+//the collection "rooms" will hold the room object
+{	
+	_id : ObjectId("532b3d9affed85e92a692432"), 
+	rId:"ROOM_AAAAAAA1", 
+	rName:'London', 
+	rSeats:2, 
+	rDeck:'DECK_Bh1AkkM5',
+	rPlayers:['PLAYER_Ge9fRD46','PLAYER_aFx65a46']
+}
+
+//the collection "players" will hold the player object
+{	
+	pId:'PLAYER_Ge9fRD46',
+	pRoom:"ROOM_AAAAAAA1",
+	pName:'Brandon',
+	pSD:false,
+	pHand:'HAND_ga4D5PqQ'
+}
+
+//the collection "decks" will hold the deck object
+{	dId:"DECK_Bh1AkkM5",
+	dRoom:"ROOM_AAAAAAA1",
+	dHand:[	{hName:'HAND_ga4D5PqQ', hCards:[{value:"10", suit:"h"},...,{value:"A", suit:"d"}]},
+			{hName:'HAND_hR5A5PqQ', hCards:[{value:"10", suit:"s"},...,{value:"Q", suit:"d"}]}]
+}
+
+//the collection "hands" will hold the hand object
+{	
+	hId:'HAND_ga4D5PqQ',
+	hPlayer:'PLAYER_Ge9fRD46',
+	hCardsDealt:[{value:"8", suit:"h"},...,{value:"K", suit:"s"}],
+	hF:{cards:[...], type:'One Pair', value:1, subvalue:1141404},
+	hM:{cards:[...], type:'Straight', value:4, subvalue:40908070605},	
+	hL:{cards:[...], type:'Straight Flush',	value:8, subvalue:40908070605}
+}

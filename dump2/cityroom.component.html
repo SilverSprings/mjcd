@@ -1,0 +1,51 @@
+<div>
+	<div *ngIf="!gameLoad" class="waiting">
+		<div class="topPlayer" *ngIf="!playerReady">
+		</div>
+		<div class="topPlayer" *ngIf="playerReady">
+			<p> Waiting for the other players   </p>
+		</div>
+		<div class="leftPlayer">
+			<p *ngIf="!otherPlayers[0]"> Waiting for a player ... <p>
+			<p *ngIf="otherPlayers[0]"> {{ otherPlayers[0].pName }} is ready <p>
+		</div>
+		<div class="middlePlayer">
+			<p *ngIf="!otherPlayers[1]"> Waiting for a player ... <p>
+			<p *ngIf="otherPlayers[1]"> {{ otherPlayers[1].pName }} is ready <p>
+		</div>
+		<div class="rightPlayer">
+			<p *ngIf="!otherPlayers[2]"> Waiting for a player ... <p>	
+			<p *ngIf="otherPlayers[2]"> {{ otherPlayers[2].pName }} is ready <p>
+		</div>
+	<div>
+	
+	<app-cityboard 
+		*ngIf="gameLoad"
+		(playerSD)="playerReadytoSD($event)"
+		[room]="room"
+		[pInR]="pInR"
+		[otherPlayers]="otherPlayers"
+	></app-cityboard>
+	<div class="mockPlayer">
+		<div id="player2">
+			<img [src]="urlOfCoverStackImg" class="otherPlayerCards">
+			<p *ngIf="!otherPlayers[0].pSD"> Still sorting ... </p>
+			<p *ngIf="otherPlayers[0].pSD"> Ready to showdown !</p>
+		</div>
+		<div id="player3">
+			<img [src]="urlOfCoverStackImg3" class="otherPlayerCards3">		
+			<p *ngIf="!otherPlayers[1].pSD"> Still sorting ... </p>
+			<p *ngIf="otherPlayers[1].pSD"> Ready to showdown !</p>
+		</div>
+		<div id="player4">
+			<img [src]="urlOfCoverStackImg" class="otherPlayerCards">
+			<p *ngIf="!otherPlayers[2].pSD"> Still sorting ... </p>
+			<p *ngIf="otherPlayers[2].pSD"> Ready to showdown !</p>
+		</div>
+	</div>	
+	<app-results
+		*ngIf="showResults" 
+		[allHands]="allHands"	
+		(playAgain)="playAgain($event)"
+	></app-results>
+</div>

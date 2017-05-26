@@ -1,0 +1,9 @@
+<div *ngIf="readyToPlay" id="board">
+	<div id="player1">
+		<app-cityplayer 
+		(doneSorting)="humanPlayerReady($event)"
+		[player]="pInR" 
+		[handDealt]="hand"
+		></app-cityplayer>
+	</div>	
+</div>
